@@ -2,7 +2,7 @@
 layout: 'default'
 date: '2009-05-21T16:06:05.000Z'
 ---
-articleStartCount = 0
+articleStartCount = 4
 articlePerPage = 4
 articleTotalCount = 0
 for document in @documents
