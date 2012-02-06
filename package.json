@@ -52,6 +52,7 @@
 		"enabledPlugins": {
 			"admin": false,
 			"rest": false,
+			"markdown": false,
 			"markdown-prettify": true
 		},
 		"plugins": {
