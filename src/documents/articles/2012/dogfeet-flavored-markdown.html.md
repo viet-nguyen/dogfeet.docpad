@@ -6,7 +6,7 @@ date: '2012-3-8'
 tags: ['Markdown', 'Docpad', 'Github']
 ---
 
-'Dogfeet-Flavored-Markdown'은 Markdown에서 Twitter처럼 `@mention`, `#hash`와 같은 표현을 사용하고 싶어서 만들었다. 이 모듈은 아직 실험중이다. 현재는 Prototype이고 좀 더 다듬에 dogfeet에 적용하겠다.
+'Dogfeet-Flavored-Markdown'은 Markdown에서 Twitter처럼 `@mention`, `#hash`와 같은 표현을 사용하고 싶어서 만들었다. 이 모듈은 아직 실험중이다.
 
 'Dogfeet-Flavored-Markdown'의 구현을 요약하자면 다음과 같다:
 
@@ -18,7 +18,7 @@ tags: ['Markdown', 'Docpad', 'Github']
 
 ## Github-Flavored-Markdown
 
-Github-Flavored-Markdown(이하 GitHub-Flavored)은 다음과 같은 표현을 지원한다.
+Github-Flavored-Markdown(이하 GFM)은 다음과 같은 표현을 지원한다.
 
     * SHA: be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
     * User@SHA ref: mojombo@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
@@ -32,7 +32,7 @@ Github-Flavored-Markdown(이하 GitHub-Flavored)은 다음과 같은 표현을 �
  * User/Project@SHA: mojombo/god@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
  * User/Project#Num: mojombo/god#1
 
-나머지 패턴도 동작하게 하려면 '사용자/저장소' 정보가 필요하다. GitHub-Flavored의 용법은 다음과 같은데 인자로 '사용자/저장소'를 넘겨줄 수 있다:
+나머지 패턴도 동작하게 하려면 '사용자/저장소' 정보가 필요하다. GFM의 용법은 다음과 같은데 인자로 '사용자/저장소'를 넘겨줄 수 있다:
 
     var ghm = require("github-flavored-markdown")
     ghm.parse("I **love** GHM.\n\n#2", "isaacs/npm")
@@ -49,7 +49,7 @@ Github-Flavored-Markdown(이하 GitHub-Flavored)은 다음과 같은 표현을 �
 
 ## Dogfeet-Flavored-Markdown
 
-Dogfeet-Flavored-Markdown(이하 DogFeet-Flavored)은 GitHub-Flavored에서 '사용자/저장소' 정보가 필요한 나머지 패턴은 삭제했다. 그래서 다음과 같은 패턴만 사용할 수 있다:
+Dogfeet-Flavored-Markdown(이하 DFM)은 DFM에서 '사용자/저장소' 정보가 필요한 나머지 패턴은 삭제했다. 그래서 다음과 같은 패턴만 사용할 수 있다:
 
  * User/Project@SHA: mojombo/god@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
  * User/Project#Num: mojombo/god#1
@@ -61,7 +61,11 @@ Dogfeet-Flavored-Markdown(이하 DogFeet-Flavored)은 GitHub-Flavored에서 '사
 
 다시 말해서 줄 처음에 시작하는 `@mention`이나 앞에 공백(space, tab)문자가 있는 것만 인식한다.
 
-그리고 `<code>` 블럭에 있는 것은 무시한다. 간단히 말하면 `@mention`과 @mention의 차이다.
+이 규칙이 중요할 때가 있는데, `#`으로 Heading을 표현하는 Markdown에서 중요하다. 줄 맨앞에서 `#Heading`이라고 표현하면 DFM가 처리하는 것이 아니라 showdown 엔진이 처리하기 때문에 링크가 생성되지 않고 `<h1>Heading</h1>`이라고 해석된다. 이 것은 해석하는 순서의 문제다. 순서는 이 글 마지막에 있다.
+
+그리고 `<code>` 블럭과 `<a>` 블럭에 있는 것은 무시한다. 간단히 말하면 `@mention`과 @mention의 차이이고 [@twitter](http://twitter.com)와 @twitter 의 차이다. 원문은 다음과 같다:
+
+    그리고 `<code>` 블럭과 `<a>` 블럭에 있는 것은 무시한다. 간단히 말하면 `@mention`과 @mention의 차이이고 [@twitter](http://twitter.com)와 @twitter 의 차이다. 원문은 다음과 같다:
 
 ### 예제
 
@@ -78,7 +82,7 @@ Dogfeet-Flavored-Markdown(이하 DogFeet-Flavored)은 GitHub-Flavored에서 '사
 
 (이글에서는 `#hash`는 Twitter가 아니라 이 블로그의 tagmap 페이지로 연결된다.)
 
-다음은 코드 블럭이라 DogFeet-Flavored은 동작하지 않는다. 하지만 GitHub-Flavored의 된다. 다시 말하지만 GitHub-Flavored의 것은 코드 블럭에서도 링크를 생성 하지만 Dogfeet에서 추가한 `@mention`과  `#hash`는 코드 블럭에서는 링크를 생성하지 않는다:
+다음은 코드 블럭이라 DFM은 동작하지 않는다. 하지만 GFM의 것은 코드 블럭의 것도 처리한다. 다시 말하지만 GFM의 것은 코드 블럭에서도 링크를 생성 하지만 Dogfeet에서 추가한 `@mention`과  `#hash`는 코드 블럭에서는 링크를 생성하지 않는다:
 
     * SHA: be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
     * User@SHA ref: mojombo@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
@@ -89,18 +93,6 @@ Dogfeet-Flavored-Markdown(이하 DogFeet-Flavored)은 GitHub-Flavored에서 '사
     * @pismute
     * #EveryoneIsBeautiful `, #EveryoneIsBeautiful,#EveryoneIsBeautiful`
     * #한글 `, #한글,#한글`
-
-### 설치
-
-아직 패키지하지 않았다. `npm link`로 설치해야 한다.
-
-    $ git clone https://github.com/pismute/github-flavored-markdown.git
-    $ npm link
-
-이젝 global에 설치했으니 해당 프로젝트에서 `npm link`를 실행해 local에 설치한다.
-
-    $ cd myproject
-    $ npm link
 
 ### Coding
 
@@ -115,9 +107,6 @@ Dogfeet-Flavored-Markdown(이하 DogFeet-Flavored)은 GitHub-Flavored에서 '사
     // returns:
     // '<p>I <strong>love</strong> @@GHM. ##DHM'
 
-## 기타
-
-그외 규칙들을 정리한다.
 
 ### 순서
 
@@ -127,12 +116,25 @@ Dogfeet-Flavored-Markdown(이하 DogFeet-Flavored)은 GitHub-Flavored에서 '사
  * 그리고 그 결과를 [Github-Flavored-Markdown][isaacs-flavored-markdown] 이 처리한다.
  * 마지막으로 [Dogfeet-Flavored-Markdown][dogfeet-flavored-markdown] 이 처리한다.
 
-이 규칙이 중요할 때가 있는데, Heading을 표현하는 Markdown에서 중요하다. 줄 맨앞에서 `#Heading`이라고 표현하면 Dogfeet-Flavored가 처리하는 것이 아니라 showdown 엔진이 처리하기 때문에 링크가 생성되지 않고 `<h1>Heading</h1>`이라고 해석된다.
+### 설치
+
+이 모듈은 npmjs.org에 올릴 계획이 없다. 그러니 다음과 같이 설치해야 한다.
+
+    npm install git://github.com/dogfeet/dogfeet-flavored-markdown.git#master
+
+## 마치며
+
+ 이 모듈의 [저장소][dogfeet-flavored-markdown]에 올려 두었다.
+
+## TODO
+
+다음과 같은 두 문제를 더 해결해야 한다.
+
+ * `#hash`로 정의하면 실제로 문서의 tag로 인식하는 docpad plugin을 만들어야 함.
 
 [showdown]: http://www.showdown.im/
-[dogfeet-flavored-markdown]: https://github.com/pismute/github-flavored-markdown
+[dogfeet-flavored-markdown]: https://github.com/dogfeet/dogfeet-flavored-markdown
 [github-flavored-markdown-help]: http://github.github.com/github-flavored-markdown/
 [isaacs-flavored-markdown]: https://github.com/isaacs/github-flavored-markdown
 [github-flavored-markdown]: https://github.com/github/github-flavored-markdown
-
 

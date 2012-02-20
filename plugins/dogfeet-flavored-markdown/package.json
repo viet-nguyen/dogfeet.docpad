@@ -41,7 +41,6 @@
 		"url": "http://github.com/balupton/docpad.git"
 	},
 	"dependencies": {
-		"dogfeet-flavored-markdown": "1.0.x"
 	},
 	"engines" : {
 		"node": ">=0.4.0"
