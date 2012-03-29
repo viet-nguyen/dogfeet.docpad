@@ -8,10 +8,11 @@ tags: ['javascript', 'CPS', 'programming', 'continuation']
 
 Learning J의 Chapter2를 번역했다. 리스트와 테이블에 대한 내용이다. 굉장히 기초적이고 중요한 내용이다. 특히 배열의 차원(dimension)에 대한 이야기는 나중에 나올 랭크라는 개념을 이해하기 위한 초석이므로 예제들을 잘 보아야 한다. 눈에 보이는 데이터가 같다고 해서 같은 데이터가 아니라는 것도 중요하다. 지금 말하고 있는게 무슨 말인지 모르겠다면 이번 챕터를 읽도록 하자.
 
-## chapter 2: 리스트와 테이블
+![j-code](image)
+
 계산(computation)은 데이터를 필요로 한다. 지금까지 단일 숫자와 숫자 리스트로 된 데이터만을 다뤘다. 하지만 테이블같은 다른 데이터도 생각해볼 수 있다. 리스트나 테이블들을 "배열"(Array)이라고 부른다.
 
-### 2.1 Tables
+## 2.1 테이블
 2행 3열 테이블은 `$`함수로 만들 수 있다.
 
 	   table =: 2 3   $   5 6 7  8 9 10
@@ -19,7 +20,7 @@ Learning J의 Chapter2를 번역했다. 리스트와 테이블에 대한 내용�
 	5 6  7
 	8 9 10
 
-이 도식은 `x $ y`라는 표현식이 테이블을 생성한다는 것을 보여준다. 테이블의 차원(dimensions)은 x에 의해 정해진다. x는 행의 갯 수 다음에 열의 갯 수가 오는 리스트의 형태이다. 테이블은 y의 내용으로 채워진다.
+이 식은 `x $ y`라는 표현식이 테이블을 생성하는 것을 보여준다. x가 테이블의 차원(dimensions)을 결정한다. x는 행의 갯 수 다음에 열의 갯 수가 오는 리스트의 형태이다. 테이블은 y의 내용으로 채워진다.
 y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에는 두번째 행을 채워나간다. 행이 더 있으면 계속 y의 아이템을 가져와 순서대로 채운다. y는 적어도 하나 이상의 아이템을 가지고 있어야만 한다. 만약 y의 아이템 갯 수가 테이블을 채우기 부족하다면 y의 처음부터 재사용한다.
 
 <table cellpadding="10" border="1">
@@ -66,7 +67,7 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 
 바로 위 예제에서, 리스트 `0 1`의 각 아이템은 자동으로 테이블의 행과 매칭되었다. 0은 첫번째 행과 1은 두번째 행과 매칭되었다. 다른 패턴들도 이런 식으로 매칭될수 있다. 더 보려면 7장을 보면 된다.
 
-### 2.2 배열
+## 2.2 배열
 테이블은 2개의 차원을 가졌다.(즉 행과 열) 같은 느낌으로 리스트는 1개의 차원을 가졌다고 할 수 있다.
 2개 이상의 차원을 가진 테이블형의 데이터 오브젝트들이 있다. `$`함수의 왼쪽 인자는 차원의 갯수를 가지는 리스트라고 할 수 있다. "배열"이라는 단어는 차원을 가진 데이터 오브젝트를 가리키는 일반적인 말이다. 아래에는 1차원, 2차원, 3차원의 배열에 대한 예제이다.
 
@@ -86,10 +87,9 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 6 7 8</tt></td>
 </tr></tbody></table>
 
-위 예제의 3차원 배열은 2면, 2행, 3열을 가지고 있다고 할 수 있다. 두 개의 면은 위아래 차례대로 표시되어있다.
-The 3-dimensional array in the last example is said to have 2 planes, 2 rows and 3 columns and the two planes are displayed one below the other.
+위 예제의 3차원 배열은 2면, 2행, 3열을 가지고 있다. 두 개의 면은 위아래 차례대로 표시되어있다.
 
-모나딕 `#`함수로 리스트의 길이를 알 수 있다는 것을 상기하자.
+모나딕 `#`함수로 리스트의 길이를 알 수 있는 것을 상기하자.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -197,11 +197,11 @@ The 3-dimensional array in the last example is said to have 2 planes, 2 rows and
 <td><tt>2</tt></td>
 </tr></tbody></table>
 
-### 2.3 Terminology: Rank and Shape
-The property we called "dimension-count" is in J called by the shorter name of of "rank", so a single number is a said to be a rank-0 array, a list of numbers a rank-1 array and so on. The list-of-dimensions of an array is called its "shape".
-The mathematical terms "vector" and "matrix" correspond to what we have called "lists" and "tables" (of numbers). An array with 3 or more dimensions (or, as we now say, an array of rank 3 or higher) will be called a "report".
+## 2.3 용어: 랭크와 모양(Rank and Shape)
+"차원 수"라고 부르는 속성은 J에서는 짧게 줄여 "랭크(Rank)"라고 부른다. 그래서 단일 숫자는 랭크-0 배열(rank-0 array)라고 부르고, 리스트는 랭크-1 배열이라고 한다. 차원 리스트는 "모양(Shape)"이라고 한다.
+수학 용어에서 "벡터(Vector)"와 "매트릭스(Matrix)"는 위에서 말했던 "리스트"와 "테이블"과 관련이 있다. 3차원 이상의 배열(아, 이제는 랭크 3이상의 배열 이라고하겠다.)은 "리포트(Report)"라고 부른다.
 
-A summary of terms and functions for describing arrays is shown in the following table.
+아래 테이블에 배열에 대한 용어와 함수들을 정리해놓았다.
 
 	+--------+--------+-----------+------+
 	|        | Example| Shape     | Rank |
@@ -222,21 +222,21 @@ A summary of terms and functions for describing arrays is shown in the following
 	|        |9 10 11 |           |      |
 	+--------+--------+-----------+------+
 
-This table above was in fact produced by a small J program, and is a genuine "table", of the kind we have just been discussing. Its shape is 6 4. However, it is evidently not just a table of numbers, since it contains words, list of numbers and so on. We now look at arrays of things other than numbers.
+위 테이블은 사실 조그마한 J프로그램으로 짜서 출력한 것이다. 게다가 저건 위에 작은 챕터를 할애해서 말했던 자료구조인 진짜 "테이블"이다. 이 테이블의 모양은 `6 4`이다. 하지만 이건 숫자로만 이루어진 테이블이 아니라 문자도 있고, 리스트도 담고 있다. 그럼 이제 숫자가 아닌걸로 이루어진 배열을 살펴보자
 
-### 2.4 Arrays of Characters
-Characters are letters of the alphabet, punctuation, numeric digits and so on. We can have arrays of characters just as we have arrays of numbers. A list of characters is entered between single quotes, but is displayed without the quotes. For example:
+## 2.4 문자로 이루어진 배열
+문자는 알파벳, 구두점, 숫자등을 말한다. 숫자로 배열을 만들었듯이 이런 문자로도 배열을 만들 수 있다. 문자의 리스트는 작은 따움표안에 문자들을 넣으면 된다. 하지만 결과 화면에 출력될 때는 작은 따옴표는 보이지 않는다. 예를 들자면 아래와 같다.
 
 	   title =: 'My Ten Years in a Quandary'
 	   title
 	My Ten Years in a Quandary
 
-A list of characters is called a character-string, or just a string. A single quote in a string is entered as two successive single quotes.
+문자의 리스트는 문자열(string)이라고 부른다. 문자열 안의 작은 따움표를 넣으려면 작은 따옴표를 연속 두 번 타이핑한다.
 
 	   'What''s new?'
 	What's new?
 
-An empty, or zero-length, string is entered as two successive single quotes, and displays as nothing.
+빈 문자열이나 길이가 0인 문자열을 나타내려면 연속된 두 개의 작은 따옴표를 타이핑한다. 이건 화면에 보이지 않는다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -247,11 +247,11 @@ An empty, or zero-length, string is entered as two successive single quotes, and
 <td><tt>0</tt></td>
 </tr></tbody></table>
 
-### 2.5 Some Functions for Arrays
-At this point it will be useful to look at some functions for dealing with arrays. J is very rich in such functions: here we look at a just a few.
+## 2.5 배열에 사용되는 함수
+이 장에서는 배열을 다루는 몇가지 유용한 함수들을 볼 것이다. J는 매우 다양한 함수들을 가진 언어이다. 한번 살펴보자.
 
-#### 2.5.1 Joining
-The built-in function , (comma) is called "Append". It joins things together to make lists.
+### 2.5.1 합치기
+내장 함수인 `,`는 "Append"라고 부른다.  The built-in function , (comma) is called "Append". It joins things together to make lists.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -264,7 +264,7 @@ The built-in function , (comma) is called "Append". It joins things together to 
 <td><tt>rearranged</tt></td>
 </tr></tbody></table>
 
-The "Append" function joins lists or single items.
+"Append" 함수는 리스트나 아이템 하나를 합친다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -281,7 +281,7 @@ The "Append" function joins lists or single items.
 <td><tt>1 2 3 1 2 3</tt></td>
 </tr></tbody></table>
 
-The "Append" function can take two tables and join them together end-to-end to form a longer table:
+"Append" 함수는 두 개의 테이블의 양 끝을 합쳐서 더 긴 테이블을 만들수도 있다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -299,11 +299,11 @@ rat<br>
 pig</tt></td>
 </tr></tbody></table>
 
-For more information about "Append", see Chapter 05.
+"Append"에 대한 더 많은 정보를 원하면 5장을 보라.
 
-#### 2.5.2 Items
-The items of a list of numbers are the individual numbers, and we will say that the items of a table are its rows. The items of a 3-dimensional array are its planes. In general we will say that the items of an array are the things which appear in sequence along its first dimension. An array is the list of its items.
-Recall the built-in verb # ("Tally") which gives the length of a list.
+### 2.5.2 아이템
+숫자로 이루어진 리스트의 아이템은 각각이 숫자이다. 그리고 테이블의 아이템은 그 테이블의 행이라고 한다. 3차원 배열의 아이템은 그 배열의 평면이다. 일반적으로 말해서 아이템이라 함은 배열의 첫번째 차원을 따라 늘어서있는 요소들의 연속이다. 배열은 아이템으로 이루어진 리스트이다.
+`#`("Tally")함수가 리스트의 길이를 반환한다고 했었다. 아래를 보자
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -314,7 +314,7 @@ Recall the built-in verb # ("Tally") which gives the length of a list.
 <td><tt>3</tt></td>
 </tr></tbody></table>
 
-In general # counts the number of items of an array, that is, it gives the first dimension:
+일반적으로 `#`는 배열의 아이템 갯 수, 즉 첫번째 차원의 크기를 잰다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -328,12 +328,12 @@ dog</tt></td>
 <td><tt>2</tt></td>
 </tr></tbody></table>
 
-Evidently # T1 is the first item of the list-of-dimensions $ T1. A scalar, with no dimensions, is regarded as a single item:
+확실히 `# T1`은 차원 리스트인 `$ T1`의 첫번째 아이템이다. 차원이 없는 스칼라는 단일 아이템으로 취급한다.
 
 	   # 6
 	1
 
-Consider again the example of "Append" given above.
+밑에 있는 "Append"의 예를 다시 보자.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -351,9 +351,9 @@ rat<br>
 pig</tt></td>
 </tr></tbody></table>
 
-Now we can say that in general (x , y) is a list consisting of the items of x followed by the items of y.
+이제 일반적인 `x , y`는 `x`의 아이템 다음에 `y`의 아이템이 오는 리스트라고 말할 수 있겠다.
 
-For another example of the usefulness of "items", recall the verb +/ where + is inserted between items of a list.
+"아이템"을 잘 이용하기 위한 다른 예제로 `+/` 함수가 있다. `+/`는 +를 리스트의 아이템 사이사이에 끼워 넣는다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -364,7 +364,7 @@ For another example of the usefulness of "items", recall the verb +/ where + is 
 <td><tt>6</tt></td>
 </tr></tbody></table>
 
-Now we can say that in general +/ inserts + between items of an array. In the next example the items are the rows:
+일반적으로는 `+/`는 `+`를 배열의 아이템 사이에 끼워 넣는다.(리스트의 아이템 사이가 아니다) 다음 예제는 아이템이 단일 숫자가 아니라 테이블의 행인 경우이다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -379,8 +379,8 @@ Now we can say that in general +/ inserts + between items of an array. In the ne
 <td><tt>9 12</tt></td>
 </tr></tbody></table>
 
-#### 2.5.3 Selecting
-Now we look at selecting items from a list. Positions in a list are numbered 0, 1, 2 and so on. The first item occupies position 0. To select an item by its position we use the function { (left brace, called "From") .
+### 2.5.3 선택하기
+이제 리스트에서 아이템을 선택하는 방법을 알아보자. 리스트에서 아이템의 위치는 0, 1, 2... 로 숫자가 매겨져있다. 첫번째 아이템의 위치는 0이다.(10번째 아이템의 위치는 9이다.) 위치를 가지고 아이템을 선택하기 위해서는 `{`("From") 함수를 사용한다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -395,7 +395,7 @@ Now we look at selecting items from a list. Positions in a list are numbered 0, 
 <td><tt>d</tt></td>
 </tr></tbody></table>
 
-A position-number is called an index. The { function can take as left argument a single index or a list of indices:
+위치를 나타내는 숫자는 인덱스라고 부른다. `{`함수는 왼쪽 인자에 인덱스로써 단일 숫자나 숫자 리스트를 받는다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -410,7 +410,7 @@ A position-number is called an index. The { function can take as left argument a
 <td><tt>dab</tt></td>
 </tr></tbody></table>
 
-There is a built-in function i. (letter-i dot). The expression (i. n) generates n successive integers from zero.
+`i.` 라는 내장 함수도 있다. 표현식 `i. n`은 크기가 n인 0부터 순서대로 커지는 양의 정수의 리스트를 생성한다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -423,7 +423,7 @@ There is a built-in function i. (letter-i dot). The expression (i. n) generates 
 <td><tt>1 2 3</tt></td>
 </tr></tbody></table>
 
-If x is a list, the expression (i. # x) generates all the possible indexes into the list x.
+만약 x가 리스트라면 `i. # x`라는 표현식은 x에서 사용할 수 있는 모든 인덱스의 리스트를 만들어낸다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -436,31 +436,32 @@ If x is a list, the expression (i. # x) generates all the possible indexes into 
 <td><tt>0 1 2 3</tt></td>
 </tr></tbody></table>
 
-With a list argument, i. generates an array:
+`i.`의 인자로 리스트가 들어오면 배열이 만들어진다.
 
 	   i. 2 3
 	0 1 2
 	3 4 5
 
-There is a dyadic version of i., called "Index Of". The expression (x i. y) finds the position, that is, index, of y in x.
+`i.`를 다이아딕으로 사용하면 이때는 `i.`를 "Index Of"라고 부른다. `x i. y`라는 표현식은 x에 있는 y의 위치를 찾아낸다.
 
 	   'park' i. 'k'
 	3
 
-The index found is that of the first occurrence of y in x.
+찾은 인덱스는 x에서 y가 처음으로 발견된 위치이다.
+
 
 	   'parka' i. 'a'
 	1
 
-If y is not present in x, the index found is 1 greater than the last possible position.
+x에 y가 없다면 마지막 위치보다 1큰 수를 반환한다.
 
 	   'park' i. 'j'
 	4
 
-For more about the many variations of indexing, see Chapter 06.
+인덱싱에 대해 더 많은 것을 알고 싶다면 챕터 6을 보라.
 
-#### 2.5.4 Equality and Matching
-Suppose we wish to determine whether two arrays are the same. There is a built-in verb -: (minus colon, called "Match"). It tests whether its two arguments have the same shapes and the same values for corresponding elements.
+### 2.5.4 같음과 매칭(Equality and Matching)
+두 배열이 같은지 알아봐야 하는 상황이라면 내장 함수인 `-:`("Match")를 사용하면 된다. 이 함수는 두 개의 인자가 같은 모양, 같은 값을 가지고 있는지 검사한다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -475,15 +476,15 @@ Suppose we wish to determine whether two arrays are the same. There is a built-i
 <td><tt>0</tt></td>
 </tr></tbody></table>
 
-Whatever the arguments, the result of Match is always a single 0 or 1.
+인자가 뭐든간에 함수의 결과값은 0아니면 1이다.
 
-Notice that an empty list of, say, characters is regarded as matching an empty list of numbers:
+빈 문자 리스트와 빈 숫자 리스트는 같다는건 알아두어야 한다.
 
 	   '' -: 0 $ 0
 	1
 
-because they have the same shapes, and furthermore it is true that all corresponding elements have the same values, (because there are no such elements).
-There is another verb, = (called "Equal") which tests its arguments for equality. = compares its arguments element by element and produces an array of booleans of the same shape as the arguments.
+이 둘의 모양은 같고 모든 매핑되는 요소의 값들이 같기때문에 위 식은 참이다.(물론 요소가 없긴하다.)
+`=`("Equal")라는 함수도 있다. 이 함수는 주어진 두 인자가 같은지를 확인한다. `=`는 매핑되는 각 요소들의 값이 같은지 확인해서 요소와 같은 모양의 불리언 배열을 반환한다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -496,7 +497,7 @@ There is another verb, = (called "Equal") which tests its arguments for equality
 <td><tt>0 1 0 0</tt></td>
 </tr></tbody></table>
 
-Consequently, the two arguments of = must have the same shapes, (or at least, as in the example of Y=2, compatible shapes). Otherwise an error results.
+결론적으로 `=`가 가지는 두 인자는 반드시 같은 모양이어야 한다.(아니면 적어도, `Y=2`의 경우와 같이 호환되는 모양이어야 한다) 그렇지 않으면 에러가 발생한다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -509,8 +510,8 @@ Consequently, the two arguments of = must have the same shapes, (or at least, as
 <td><tt>error</tt></td>
 </tr></tbody></table>
 
-### 2.6 Arrays of Boxes
-#### 2.6.1 Linking
+## 2.6 박스의 배열Arrays of Boxes
+### 2.6.1 링크하기
 There is a built-in function ; (semicolon, called "Link"). It links together its two arguments to form a list. The two arguments can be of different kinds. For example we can link together a character-string and a number.
 
 	   A =: 'The answer is'  ;  42
@@ -606,7 +607,7 @@ For more about "Format", see Chapter 19. Now we return to the subject of boxes. 
 	|4  |1  |5    |
 	+---+---+-----+
 
-#### 2.6.2 Boxing and Unboxing
+### 2.6.2 박싱과 언박싱Boxing and Unboxing
 There is a built-in function < (left-angle-bracket, called "Box"). A single boxed value can be created by applying < to the value.
 
 	   < 'baked beans'
@@ -642,6 +643,6 @@ It may be helpful to picture < as a funnel. Flowing into the wide end we have da
 +---+---+---+</tt></td>
 </tr></tbody></table>
 
-### 2.7 Summary
+## 2.7 Summary
 In conclusion, every data object in J is an array, with zero, one or more dimensions. An array may be an array of numbers, or an array of characters, or an array of boxes (and there are further possibilities).
 This brings us to the end of Chapter 2.
