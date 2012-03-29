@@ -8,13 +8,13 @@ tags: ['nodejs', 'BDD', 'Test', 'Mocha', 'Should']
 
 이 글은 '[Testing with Mocha][]'을 다시 쓴 것이다. [Alex Young][]님이 만든 예제도 내가 쓰기 편하게 좀 고쳤다.
 
-![](http://dailyjs.com/2011/12/08/mocha/mocha-test.png)
+![mocha-test](/articles/2012/nodejs-mocha/mocha-test.png)
 
 [Testing with Mocha][]를 읽고 Mocha 메뉴얼을 읽으니 훨씬 눈에 잘들어 온다.
 
 ## Mocha
 
-[Mocha][]는 기본적으로 [BDD][] 프레임워크이다. [nodejs][]에서 [TDD][]를 할 때 사용하고 요즘 [vowjs][]와 함께 주목 받고 있는 모듈이다.
+[Mocha][]는 TJ Holowaychuk이 만든 [BDD][] 프레임워크이다. [nodejs][]에서 [TDD][]를 할 때 사용하고 [vowjs][]와 함께 주목 받고 있는 모듈이다.
 
 다양한 방법으로 리포팅하는 방법도 제공하고 암튼 좋다. 사실 vowjs는 안살펴봐서 모르겠다. 둘의 차이는 @drypot님의 [글][drypot-mocha]로 비교해보자.
 
