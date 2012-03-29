@@ -6,20 +6,21 @@ date: '2012-02-24'
 tags: ['javascript', 'CPS', 'programming', 'continuation']
 ---
 
+Learning J의 Chapter2를 번역했다. 리스트와 테이블에 대한 내용이다. 굉장히 기초적이고 중요한 내용이다. 특히 배열의 차원(dimension)에 대한 이야기는 나중에 나올 랭크라는 개념을 이해하기 위한 초석이므로 예제들을 잘 보아야 한다. 눈에 보이는 데이터가 같다고 해서 같은 데이터가 아니라는 것도 중요하다. 지금 말하고 있는게 무슨 말인지 모르겠다면 이번 챕터를 읽도록 하자.
+
 ## chapter 2: 리스트와 테이블
+계산(computation)은 데이터를 필요로 한다. 지금까지 단일 숫자와 숫자 리스트로 된 데이터만을 다뤘다. 하지만 테이블같은 다른 데이터도 생각해볼 수 있다. 리스트나 테이블들을 "배열"(Array)이라고 부른다.
 
-Computations need data. So far we have seen data only as single numbers or lists of numbers. We can have other things by way of data, such as tables for example. Things like lists and tables are called "arrays".
-
-## 2.1 Tables
-A table with, say, 2 rows and 3 columns can be built with the $ function:
+### 2.1 Tables
+2행 3열 테이블은 `$`함수로 만들 수 있다.
 
 	   table =: 2 3   $   5 6 7  8 9 10
 	   table
 	5 6  7
 	8 9 10
 
-The scheme here is that the expression (x $ y) builds a table. The dimensions of the table are given by the list x which is of the form number-of-rows followed by number-of-columns. The elements of the table are supplied by the list y.
-Items from y are taken in order, so as to fill the first row, then the second, and so on. The list y must contain at least one item. If there are too few items in y to fill the whole table, then y is re-used from the beginning.
+이 도식은 `x $ y`라는 표현식이 테이블을 생성한다는 것을 보여준다. 테이블의 차원(dimensions)은 x에 의해 정해진다. x는 행의 갯 수 다음에 열의 갯 수가 오는 리스트의 형태이다. 테이블은 y의 내용으로 채워진다.
+y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에는 두번째 행을 채워나간다. 행이 더 있으면 계속 y의 아이템을 가져와 순서대로 채운다. y는 적어도 하나 이상의 아이템을 가지고 있어야만 한다. 만약 y의 아이템 갯 수가 테이블을 채우기 부족하다면 y의 처음부터 재사용한다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -32,9 +33,9 @@ Items from y are taken in order, so as to fill the first row, then the second, a
 1 1</tt></td>
 </tr></tbody></table>
 
-The $ function offers one way to build tables, but there are many more ways: see Chapter 05.
+`$`함수는 한가지 방식로만 테이블을 만든다. 더 많은 방식을 보고 싶다면 5장을 참고하라.
 
-Functions can be applied to whole tables exactly as we saw earlier for lists:
+여러 함수들은 이전에 리스트에서도 그랬듯이 테이블에서도 정확하게 똑같이 적용된다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -50,7 +51,7 @@ Functions can be applied to whole tables exactly as we saw earlier for lists:
 16 18 20</tt></td>
 </tr></tbody></table>
 
-One argument can be a table and one a list:
+한 인자는 테이블 다른 인자는 리스트가 될 수도 있다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -63,11 +64,11 @@ One argument can be a table and one a list:
 8 9 10</tt></td>
 </tr></tbody></table>
 
-In this last example, evidently the items of the list 0 1 are automatically matched against the rows of the table, 0 matching the first row and 1 the second. Other patterns of matching the arguments against each other are also possible - see Chapter 07.
+바로 위 예제에서, 리스트 `0 1`의 각 아이템은 자동으로 테이블의 행과 매칭되었다. 0은 첫번째 행과 1은 두번째 행과 매칭되었다. 다른 패턴들도 이런 식으로 매칭될수 있다. 더 보려면 7장을 보면 된다.
 
-## 2.2 Arrays
-A table is said to have two dimensions (namely, rows and columns) and in this sense a list can be said to have only one dimension.
-We can have table-like data objects with more than two dimensions. The left argument of the $ function can be a list of any number of dimensions. The word "array" is used as the general name for a data object with some number of dimensions. Here are some arrays with one, two and three dimensions:
+### 2.2 배열
+테이블은 2개의 차원을 가졌다.(즉 행과 열) 같은 느낌으로 리스트는 1개의 차원을 가졌다고 할 수 있다.
+2개 이상의 차원을 가진 테이블형의 데이터 오브젝트들이 있다. `$`함수의 왼쪽 인자는 차원의 갯수를 가지는 리스트라고 할 수 있다. "배열"이라는 단어는 차원을 가진 데이터 오브젝트를 가리키는 일반적인 말이다. 아래에는 1차원, 2차원, 3차원의 배열에 대한 예제이다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -85,9 +86,10 @@ We can have table-like data objects with more than two dimensions. The left argu
 6 7 8</tt></td>
 </tr></tbody></table>
 
+위 예제의 3차원 배열은 2면, 2행, 3열을 가지고 있다고 할 수 있다. 두 개의 면은 위아래 차례대로 표시되어있다.
 The 3-dimensional array in the last example is said to have 2 planes, 2 rows and 3 columns and the two planes are displayed one below the other.
 
-Recall that the monadic function # gives the length of a list.
+모나딕 `#`함수로 리스트의 길이를 알 수 있다는 것을 상기하자.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -98,7 +100,7 @@ Recall that the monadic function # gives the length of a list.
 <td><tt>3</tt></td>
 </tr></tbody></table>
 
-The monadic function $ gives the list-of-dimensions of its argument:
+모나딕 `$`함수로는 인자의 차원 리스트를 알 수 있다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -114,7 +116,7 @@ The monadic function $ gives the list-of-dimensions of its argument:
 <td><tt>2 3</tt></td>
 </tr></tbody></table>
 
-Hence, if x is an array, the expression (# $ x) yields the length of the list-of-dimensions of x, that is, the dimension-count of x, which is 1 for a list, 2 for a table and so on.
+그러므로 만약 x가 배열이라면 (`# $ x`)라는 표현식은 x의 차원 리스트의 길이, 즉 x의 차원 갯 수를 내뱉는다.  차원의 갯 수가 1이면 리스트, 2이면 테이블인 식이다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -134,15 +136,17 @@ Hence, if x is an array, the expression (# $ x) yields the length of the list-of
 <td><tt>2</tt></td>
 </tr></tbody></table>
 
-If we take x to be a single number, then the expression (# $ x) gives zero.
+만약 x가 단일 숫자라면 (`# $ x`)는 0이다.
 
 	   # $ 17
 	0
 
-We interpret this to mean that, while a table has two dimensions, and a list has one, a single number has none, because its dimension-count is zero. A data object with a dimension-count of zero will be called a scalar. We said that "arrays" are data objects with some number of dimensions, and so scalars are also arrays, the number of dimensions being zero in this case.
-We saw that (# $ 17) is 0. We can also conclude from this that, since a scalar has no dimensions, its list-of-dimensions (given here by $ 17) must be a zero-length, or empty, list. Now a list of length 2, say can be generated by an expression such as 2 $ 99 and so an empty list, of length zero, can be generated by 0 $ 99 (or indeed, 0 $ any number)
 
-The value of an empty list is displayed as nothing:
+이건 이런 의미로 해석할 수 있다. 테이블이 2차원이고 리스트가 1차원이고 단일 수는 차원이 없다. 단일수의 차원 수는 0이기 때문이다. 차원 수가 0인 데이터 오브젝트는 스칼라(scalar)라고 부른다. 우리는 "배열"을 어떤 차원을 가지고 있는 데이터 오브젝트로 정의했다. 그에 따르면 스칼라 또한 배열이다. 다만 차원이 0일 뿐이다.
+우리는 위에서 (`# $ 17`)이 0임을 확인했다. 여기서 이런 결론을 도출 할 수있을 것이다. 스칼라가 차원을 가지고 있지 않기 때문에, (`$ 17`의 결과물로써의)차원 리스트는 길이가 0이거나 비어있는 리스트여야만 한다. 이제 2의 길이를 가진 리스트는 `2 $ 99`와 같은 코드를 이용해서 만들어 낼 수 있다. 그리고 길이가 0인 빈 리스트는 `0 $ 99`같은 코드로 만들어 낼 수 있겠다.(사실 99대신 아무 숫자나 쓰여도 된다.)
+
+빈 리스트의 값은 표시되지 않는다.
+
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -155,7 +159,7 @@ The value of an empty list is displayed as nothing:
 <td><tt>&nbsp;</tt></td>
 </tr></tbody></table>
 
-Notice that a scalar, (17 say), is not the same thing as a list of length one (e.g. 1 $ 17), or a table with one row and one column (e.g. 1 1 $ 17). The scalar has no dimensions, the list has one, the table has two, but all three look the same when displayed on the screen:
+스칼라(예를 들면 `17`)는 길이가 1인 리스트(예를 들면 `1 $ 17`)과는 다르다. 또 1행 1열짜리 테이블(예를 들면 `1 1 $ 17`)과도 다르다. 스칼라는 차원이 없다. 리스트는 차원이 하나, 테이블은 두 개 이다. 하지만 세 개 모두 화면에는 똑같이 보인다.
 
 	   S =: 17
 	   L =: 1 $ 17
@@ -178,7 +182,7 @@ Notice that a scalar, (17 say), is not the same thing as a list of length one (e
 <td><tt>2</tt></td>
 </tr></tbody></table>
 
-A table may have only one column, and yet still be a 2-dimensional table. Here t has 3 rows and 1 column.
+하나의 열을 가진 테이블도 여전히 2차원 테이블이다. 아래에 3행 1열의 `t`가 있다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -193,7 +197,7 @@ A table may have only one column, and yet still be a 2-dimensional table. Here t
 <td><tt>2</tt></td>
 </tr></tbody></table>
 
-## 2.3 Terminology: Rank and Shape
+### 2.3 Terminology: Rank and Shape
 The property we called "dimension-count" is in J called by the shorter name of of "rank", so a single number is a said to be a rank-0 array, a list of numbers a rank-1 array and so on. The list-of-dimensions of an array is called its "shape".
 The mathematical terms "vector" and "matrix" correspond to what we have called "lists" and "tables" (of numbers). An array with 3 or more dimensions (or, as we now say, an array of rank 3 or higher) will be called a "report".
 
@@ -220,7 +224,7 @@ A summary of terms and functions for describing arrays is shown in the following
 
 This table above was in fact produced by a small J program, and is a genuine "table", of the kind we have just been discussing. Its shape is 6 4. However, it is evidently not just a table of numbers, since it contains words, list of numbers and so on. We now look at arrays of things other than numbers.
 
-## 2.4 Arrays of Characters
+### 2.4 Arrays of Characters
 Characters are letters of the alphabet, punctuation, numeric digits and so on. We can have arrays of characters just as we have arrays of numbers. A list of characters is entered between single quotes, but is displayed without the quotes. For example:
 
 	   title =: 'My Ten Years in a Quandary'
@@ -243,10 +247,10 @@ An empty, or zero-length, string is entered as two successive single quotes, and
 <td><tt>0</tt></td>
 </tr></tbody></table>
 
-## 2.5 Some Functions for Arrays
+### 2.5 Some Functions for Arrays
 At this point it will be useful to look at some functions for dealing with arrays. J is very rich in such functions: here we look at a just a few.
 
-### 2.5.1 Joining
+#### 2.5.1 Joining
 The built-in function , (comma) is called "Append". It joins things together to make lists.
 
 <table cellpadding="10" border="1">
@@ -297,7 +301,7 @@ pig</tt></td>
 
 For more information about "Append", see Chapter 05.
 
-### 2.5.2 Items
+#### 2.5.2 Items
 The items of a list of numbers are the individual numbers, and we will say that the items of a table are its rows. The items of a 3-dimensional array are its planes. In general we will say that the items of an array are the things which appear in sequence along its first dimension. An array is the list of its items.
 Recall the built-in verb # ("Tally") which gives the length of a list.
 
@@ -375,7 +379,7 @@ Now we can say that in general +/ inserts + between items of an array. In the ne
 <td><tt>9 12</tt></td>
 </tr></tbody></table>
 
-### 2.5.3 Selecting
+#### 2.5.3 Selecting
 Now we look at selecting items from a list. Positions in a list are numbered 0, 1, 2 and so on. The first item occupies position 0. To select an item by its position we use the function { (left brace, called "From") .
 
 <table cellpadding="10" border="1">
@@ -455,7 +459,7 @@ If y is not present in x, the index found is 1 greater than the last possible po
 
 For more about the many variations of indexing, see Chapter 06.
 
-### 2.5.4 Equality and Matching
+#### 2.5.4 Equality and Matching
 Suppose we wish to determine whether two arrays are the same. There is a built-in verb -: (minus colon, called "Match"). It tests whether its two arguments have the same shapes and the same values for corresponding elements.
 
 <table cellpadding="10" border="1">
@@ -505,8 +509,8 @@ Consequently, the two arguments of = must have the same shapes, (or at least, as
 <td><tt>error</tt></td>
 </tr></tbody></table>
 
-## 2.6 Arrays of Boxes
-### 2.6.1 Linking
+### 2.6 Arrays of Boxes
+#### 2.6.1 Linking
 There is a built-in function ; (semicolon, called "Link"). It links together its two arguments to form a list. The two arguments can be of different kinds. For example we can link together a character-string and a number.
 
 	   A =: 'The answer is'  ;  42
@@ -602,7 +606,7 @@ For more about "Format", see Chapter 19. Now we return to the subject of boxes. 
 	|4  |1  |5    |
 	+---+---+-----+
 
-### 2.6.2 Boxing and Unboxing
+#### 2.6.2 Boxing and Unboxing
 There is a built-in function < (left-angle-bracket, called "Box"). A single boxed value can be created by applying < to the value.
 
 	   < 'baked beans'
@@ -638,6 +642,6 @@ It may be helpful to picture < as a funnel. Flowing into the wide end we have da
 +---+---+---+</tt></td>
 </tr></tbody></table>
 
-## 2.7 Summary
+### 2.7 Summary
 In conclusion, every data object in J is an array, with zero, one or more dimensions. An array may be an array of numbers, or an array of characters, or an array of boxes (and there are further possibilities).
 This brings us to the end of Chapter 2.
