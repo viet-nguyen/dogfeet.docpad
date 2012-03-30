@@ -3,7 +3,7 @@ layout: 'article'
 title: 'Learning J - Chapter 2: Lists and Tables'
 author: 'Yongjae Choi'
 date: '2012-03-30'
-tags: ['j', 'jsoftware', 'language', 'programming']
+tags: ['J', 'jsoftware', 'language']
 ---
 
 Learning J의 Chapter2를 번역했다. 리스트와 테이블에 대한 내용이다. 굉장히 기초적이고 중요한 내용이다. 특히 배열의 차원(dimension)에 대한 이야기는 나중에 나올 랭크라는 개념을 이해하기 위한 초석이므로 예제들을 잘 보아야 한다. 눈에 보이는 데이터가 같다고 해서 같은 데이터가 아니라는 것도 중요하다. 지금 말하고 있는게 무슨 말인지 모르겠다면 이번 챕터를 읽도록 하자.
