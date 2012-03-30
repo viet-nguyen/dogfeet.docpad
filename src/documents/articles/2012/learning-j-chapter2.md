@@ -2,8 +2,8 @@
 layout: 'article'
 title: 'Learning J - Chapter 2: Lists and Tables'
 author: 'Yongjae Choi'
-date: '2012-02-24'
-tags: ['javascript', 'CPS', 'programming', 'continuation']
+date: '2012-03-30'
+tags: ['j', 'jsoftware', 'language', 'programming']
 ---
 
 Learning J의 Chapter2를 번역했다. 리스트와 테이블에 대한 내용이다. 굉장히 기초적이고 중요한 내용이다. 특히 배열의 차원(dimension)에 대한 이야기는 나중에 나올 랭크라는 개념을 이해하기 위한 초석이므로 예제들을 잘 보아야 한다. 눈에 보이는 데이터가 같다고 해서 같은 데이터가 아니라는 것도 중요하다. 지금 말하고 있는게 무슨 말인지 모르겠다면 이번 챕터를 읽도록 하자.
@@ -13,6 +13,7 @@ Learning J의 Chapter2를 번역했다. 리스트와 테이블에 대한 내용�
 계산(computation)은 데이터를 필요로 한다. 지금까지 단일 숫자와 숫자 리스트로 된 데이터만을 다뤘다. 하지만 테이블같은 다른 데이터도 생각해볼 수 있다. 리스트나 테이블들을 "배열"(Array)이라고 부른다.
 
 ## 2.1 테이블
+
 2행 3열 테이블은 `$`함수로 만들 수 있다.
 
 	   table =: 2 3   $   5 6 7  8 9 10
@@ -68,6 +69,7 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 바로 위 예제에서, 리스트 `0 1`의 각 아이템은 자동으로 테이블의 행과 매칭되었다. 0은 첫번째 행과 1은 두번째 행과 매칭되었다. 다른 패턴들도 이런 식으로 매칭될수 있다. 더 보려면 7장을 보면 된다.
 
 ## 2.2 배열
+
 테이블은 2개의 차원을 가졌다.(즉 행과 열) 같은 느낌으로 리스트는 1개의 차원을 가졌다고 할 수 있다.
 2개 이상의 차원을 가진 테이블형의 데이터 오브젝트들이 있다. `$`함수의 왼쪽 인자는 차원의 갯수를 가지는 리스트라고 할 수 있다. "배열"이라는 단어는 차원을 가진 데이터 오브젝트를 가리키는 일반적인 말이다. 아래에는 1차원, 2차원, 3차원의 배열에 대한 예제이다.
 
@@ -141,7 +143,6 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 	   # $ 17
 	0
 
-
 이건 이런 의미로 해석할 수 있다. 테이블이 2차원이고 리스트가 1차원이고 단일 수는 차원이 없다. 단일수의 차원 수는 0이기 때문이다. 차원 수가 0인 데이터 오브젝트는 스칼라(scalar)라고 부른다. 우리는 "배열"을 어떤 차원을 가지고 있는 데이터 오브젝트로 정의했다. 그에 따르면 스칼라 또한 배열이다. 다만 차원이 0일 뿐이다.
 우리는 위에서 (`# $ 17`)이 0임을 확인했다. 여기서 이런 결론을 도출 할 수있을 것이다. 스칼라가 차원을 가지고 있지 않기 때문에, (`$ 17`의 결과물로써의)차원 리스트는 길이가 0이거나 비어있는 리스트여야만 한다. 이제 2의 길이를 가진 리스트는 `2 $ 99`와 같은 코드를 이용해서 만들어 낼 수 있다. 그리고 길이가 0인 빈 리스트는 `0 $ 99`같은 코드로 만들어 낼 수 있겠다.(사실 99대신 아무 숫자나 쓰여도 된다.)
 
@@ -198,6 +199,7 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 </tr></tbody></table>
 
 ## 2.3 용어: 랭크와 모양(Rank and Shape)
+
 "차원 수"라고 부르는 속성은 J에서는 짧게 줄여 "랭크(Rank)"라고 부른다. 그래서 단일 숫자는 랭크-0 배열(rank-0 array)라고 부르고, 리스트는 랭크-1 배열이라고 한다. 차원 리스트는 "모양(Shape)"이라고 한다.
 수학 용어에서 "벡터(Vector)"와 "매트릭스(Matrix)"는 위에서 말했던 "리스트"와 "테이블"과 관련이 있다. 3차원 이상의 배열(아, 이제는 랭크 3이상의 배열 이라고하겠다.)은 "리포트(Report)"라고 부른다.
 
@@ -225,6 +227,7 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 위 테이블은 사실 조그마한 J프로그램으로 짜서 출력한 것이다. 게다가 저건 위에 작은 챕터를 할애해서 말했던 자료구조인 진짜 "테이블"이다. 이 테이블의 모양은 `6 4`이다. 하지만 이건 숫자로만 이루어진 테이블이 아니라 문자도 있고, 리스트도 담고 있다. 그럼 이제 숫자가 아닌걸로 이루어진 배열을 살펴보자
 
 ## 2.4 문자로 이루어진 배열
+
 문자는 알파벳, 구두점, 숫자등을 말한다. 숫자로 배열을 만들었듯이 이런 문자로도 배열을 만들 수 있다. 문자의 리스트는 작은 따움표안에 문자들을 넣으면 된다. 하지만 결과 화면에 출력될 때는 작은 따옴표는 보이지 않는다. 예를 들자면 아래와 같다.
 
 	   title =: 'My Ten Years in a Quandary'
@@ -248,10 +251,12 @@ y의 아이템을 순서대로 가져와서 첫번째 행을 채우고 다음에
 </tr></tbody></table>
 
 ## 2.5 배열에 사용되는 함수
+
 이 장에서는 배열을 다루는 몇가지 유용한 함수들을 볼 것이다. J는 매우 다양한 함수들을 가진 언어이다. 한번 살펴보자.
 
 ### 2.5.1 합치기
-내장 함수인 `,`는 "Append"라고 부른다.  The built-in function , (comma) is called "Append". It joins things together to make lists.
+
+내장 함수인 `,`는 "Append"라고 부른다. 이 함수는 여러 개의 요소를 붙여서 리스트를 만든다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -302,6 +307,7 @@ pig</tt></td>
 "Append"에 대한 더 많은 정보를 원하면 5장을 보라.
 
 ### 2.5.2 아이템
+
 숫자로 이루어진 리스트의 아이템은 각각이 숫자이다. 그리고 테이블의 아이템은 그 테이블의 행이라고 한다. 3차원 배열의 아이템은 그 배열의 평면이다. 일반적으로 말해서 아이템이라 함은 배열의 첫번째 차원을 따라 늘어서있는 요소들의 연속이다. 배열은 아이템으로 이루어진 리스트이다.
 `#`("Tally")함수가 리스트의 길이를 반환한다고 했었다. 아래를 보자
 
@@ -380,6 +386,7 @@ pig</tt></td>
 </tr></tbody></table>
 
 ### 2.5.3 선택하기
+
 이제 리스트에서 아이템을 선택하는 방법을 알아보자. 리스트에서 아이템의 위치는 0, 1, 2... 로 숫자가 매겨져있다. 첫번째 아이템의 위치는 0이다.(10번째 아이템의 위치는 9이다.) 위치를 가지고 아이템을 선택하기 위해서는 `{`("From") 함수를 사용한다.
 
 <table cellpadding="10" border="1">
@@ -461,6 +468,7 @@ x에 y가 없다면 마지막 위치보다 1큰 수를 반환한다.
 인덱싱에 대해 더 많은 것을 알고 싶다면 챕터 6을 보라.
 
 ### 2.5.4 같음과 매칭(Equality and Matching)
+
 두 배열이 같은지 알아봐야 하는 상황이라면 내장 함수인 `-:`("Match")를 사용하면 된다. 이 함수는 두 개의 인자가 같은 모양, 같은 값을 가지고 있는지 검사한다.
 
 <table cellpadding="10" border="1">
@@ -510,9 +518,11 @@ x에 y가 없다면 마지막 위치보다 1큰 수를 반환한다.
 <td><tt>error</tt></td>
 </tr></tbody></table>
 
-## 2.6 박스의 배열Arrays of Boxes
-### 2.6.1 링크하기
-There is a built-in function ; (semicolon, called "Link"). It links together its two arguments to form a list. The two arguments can be of different kinds. For example we can link together a character-string and a number.
+## 2.6 박스의 배열(Arrays of Boxes)
+
+### 2.6.1 연결하기
+
+`;`("Link")라는 내장 함수가 있다. 이 함수는 두 인자를 리스트의 형태로 연결한다. 두 인자는 다른 종류의 것 이어도 된다. 예를 들어 문자열과 숫자를 연결 할 수 있다.
 
 	   A =: 'The answer is'  ;  42
 	   A
@@ -520,7 +530,7 @@ There is a built-in function ; (semicolon, called "Link"). It links together its
 	|The answer is|42|
 	+-------------+--+
 
-The result A is a list of length 2, and is said to be a list of boxes. Inside the first box of A is the string 'The answer is'. Inside the second box is the number 42. A box is shown on the screen by a rectangle drawn round the value contained in the box.
+위에서 A는 길이가 2인 리스트이다. 그리고 이 리스트는 박스의 리스트 라고 부른다. 첫번째 박스 안에는 문자열 'The answer is'가 들어있고 두번째 박스에는 숫자 42가 있다. 박스는 화면에 사각형으로 그려지고 안에 그 박스의 값을 담고 있는 형태로 그려진다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -535,7 +545,7 @@ The result A is a list of length 2, and is said to be a list of boxes. Inside th
 +-------------+</tt></td>
 </tr></tbody></table>
 
-A box is a scalar whatever kind of value is inside it. Hence boxes can be packed into regular arrays, just like numbers. Thus A is a list of scalars.
+하나의 박스는 안에 있는 값이 무엇이든 간에 스칼라로 취급한다. 박스는 그 안에 일반적인 배열(예를 들면 숫자로 이루어진 리스트 같은거)을 넣을 수 있다. 따라서 A는 스칼라의 리스트이다.(A의 아이템들은 각각이 스칼라는 말이다.)
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -554,7 +564,7 @@ A box is a scalar whatever kind of value is inside it. Hence boxes can be packed
 <td><tt>0</tt></td>
 </tr></tbody></table>
 
-The main purpose of an array of boxes is to assemble into a single variable several values of possibly different kinds. For example, a variable which records details of a purchase (date, amount, description) could be built as a list of boxes:
+박스로 이루어진 배열의 주 목적은 다른 종류의 값들을 하나의 변수에 집어넣는 것이다. 예를 들어 구입한 물건의 자세한 사항들(구매 날짜, 기격, 설명)을 담은 변수는 박스의 리스트로 나타낼 수 있다.
 
 	   P =: 18 12 1998  ;  1.99  ;  'baked beans'
 	   P
@@ -562,7 +572,7 @@ The main purpose of an array of boxes is to assemble into a single variable seve
 	|18 12 1998|1.99|baked beans|
 	+----------+----+-----------+
 
-Note the difference between "Link" and "Append". While "Link" joins values of possibly different kinds, "Append" always joins values of the same kind. That is, the two arguments to "Append" must both be arrays of numbers, or both arrays of characters, or both arrays of boxes. Otherwise an error is signalled.
+"Link"와 "Append"의 차이점에 주목해야 한다. "Link"가 다른 종류의 값들을 합치는 반면 "Append"가 합치는 값들은 언제나 같은 종류이다. 즉 "Append" 함수에 주어지는 두 인자는 반드시 둘 다 숫자로 이루어진 배열이거나 둘다 문자로 이루어진 배열이어야 한다. 아니면 둘 다 박스로 이루어진 배열이어야한다. 그게 아니면 에러가 난다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -575,9 +585,9 @@ Note the difference between "Link" and "Append". While "Link" joins values of po
 <td><tt>error</tt></td>
 </tr></tbody></table>
 
-On occasion we may wish to combine a character-string with a number, for example to present the result of a computation together with some description. We could "Link" the description and the number, as we saw above. However a smoother presentation could be produced by converting the number to a string, and then Appending this string and the description, as characters.
+문자열과 숫자를 연결해야 할 때가 있을 수있다. 예를 들자면 어떤 결과값과 그에 대한 설명은 같이 보여줘야 할 때가 있다. 그 때 위에서 봤듯이 문자열과 숫자를 "연결(Link)" 할 수 있다. 하지만 더 부드러운 표현은 숫자를 문자열로 바꿔서 두 문자열을 연결하는 방식으로 처리하는 것이다. 그러면 결과물은 박스의 리스트가 아니라 문자열이 된다.
 
-Converting a number to a string can be done with the built-in "Format" function ": (double-quote colon). In the following example n is a single number, while s, the formatted value of n, is a string of characters of length 2.
+숫자를 문자열로 바꾸는 것은 내장 함수인 `":`("Format")을 이용하면 된다. 아래 예제에서 n은 단일 숫자이고 s는 n을 포멧해서 만든 문자열이다. s는 길이가 2이다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -592,7 +602,7 @@ Converting a number to a string can be done with the built-in "Format" function 
 <td><tt>answer is 42</tt></td>
 </tr></tbody></table>
 
-For more about "Format", see Chapter 19. Now we return to the subject of boxes. Because boxes are shown with rectangles drawn round them, they lend themselves to presentation of results on-screen in a simple table-like form.
+"Format"에 대해서 더 알고 싶다면 19장을 보면 된다. 다시 박스로 돌아가도록 하자. 박스는 값이 상자로 둘러싸고 있는 형태이기 때문에, 박스가 화면에 보여질때에는 간단한 표의 형태로 보인다.
 
 	   p =: 4 1 $ 1 2 3 4
 	   q =: 4 1 $ 3 0 1 1
@@ -607,15 +617,16 @@ For more about "Format", see Chapter 19. Now we return to the subject of boxes. 
 	|4  |1  |5    |
 	+---+---+-----+
 
-### 2.6.2 박싱과 언박싱Boxing and Unboxing
-There is a built-in function < (left-angle-bracket, called "Box"). A single boxed value can be created by applying < to the value.
+### 2.6.2 박싱과 언박싱(Boxing and Unboxing)
+
+`<`("Box")라는 내장 함수가 있다. 이 함수는 인자로 들어온 값을 감싸 하나의 박스를 만든다.
 
 	   < 'baked beans'
 	+-----------+
 	|baked beans|
 	+-----------+
 
-Although a box may contain a number, it is not itself a number. To perform computations on a value in a box, the box must be, so to speak "opened" and the value taken out. The function > (right-angle-bracket) is called "Open".
+박스는 숫자를 담을수 있지만 그 자체로 숫자는 아니다. 박스 안에 있는 값으로 계산을 하려면 박스를 열어서 값을 꺼내야한다. `>` 함수가 바로 그런것이다. 이 함수는 "Open"이라고 부른다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -628,7 +639,7 @@ Although a box may contain a number, it is not itself a number. To perform compu
 <td><tt>1 2 3</tt></td>
 </tr></tbody></table>
 
-It may be helpful to picture < as a funnel. Flowing into the wide end we have data, and flowing out of the narrow end we have boxes which are scalars, that is, dimensionless or point-like. Conversely for > . Since boxes are scalars, they can be strung together into lists of boxes with the comma function, but the semicolon function is often more convenient because it combines the stringing-together and the boxing:
+`<`를 깔때기 모양의 그림으로 생각하면 이해하기가 쉽다. 데이터가 넓은 쪽으로 흘러 들어가서 좁은 쪽으로 박스에 담겨 나온다. 나온 박스는 스칼라, 즉 차원이 없다. `>`도 비슷하게 생각하면 된다. 박스가 스칼라이기 때문에 `,`함수로 각 박스를 리스트로 묶을 수 있다. 하지만 `;`함수를 쓰는게 좀 더 편하다. 이 함수는 박스에 담아 연결해주는 작업을 한 번에 해준다.
 
 <table cellpadding="10" border="1">
 <tbody><tr valign="TOP">
@@ -643,6 +654,8 @@ It may be helpful to picture < as a funnel. Flowing into the wide end we have da
 +---+---+---+</tt></td>
 </tr></tbody></table>
 
-## 2.7 Summary
-In conclusion, every data object in J is an array, with zero, one or more dimensions. An array may be an array of numbers, or an array of characters, or an array of boxes (and there are further possibilities).
-This brings us to the end of Chapter 2.
+## 2.7 요약
+
+결론적으로 J의 모든 데이터 오브젝트는 전부 n차원 배열(n >= 0)이다. 배열은 숫자로 이루어진 배열일 수도 있고, 문자, 또는 박스로 이루어졌을 수도 있다.(물론 다른 것으로 이루어질 수도 있다.)
+
+2장을 마친다.
